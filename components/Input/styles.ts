@@ -22,6 +22,10 @@ export const LabelWrapper = styled.div`
   display: flex;
   gap: 0.2rem;
   align-items: center;
+  
+  label{
+    opacity:0.8;
+  }
 
   & > p {
     color: ${(props) => props.theme["red-300"]};
@@ -52,6 +56,7 @@ export const BaseInput = styled.input<BaseInputProps>`
 
   &::placeholder {
     color: ${(props) => props.theme["gray-400"]};
+    font-weight: normal;
   }
 
   &&[type="submit"] {

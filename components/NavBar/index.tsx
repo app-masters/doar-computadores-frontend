@@ -1,34 +1,29 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useLayoutEffect, useState } from "react";
-import { render } from "react-dom";
+import { useEffect, useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { navData } from "../../utils/mocks/navData";
-import {
-  ListItemActived,
-  Logo,
-  Menu,
-  MenuBars,
-  MenuMobile,
-  NavBarContainer,
-} from "./styles";
+import { Logo, Menu, MenuBars, MenuMobile, NavBarContainer } from "./styles";
 
 export const NavBar = () => {
   const router = useRouter();
-  const [screenSize, setScreenSize] = useState<number>();
-  const [isMobile, setIsmobile] = useState(false)
+  const [isMobile, setIsmobile] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // GET THE SCREEN SIZE
+  // SETUP WINDOW LISTENER AND SET MOBILE MODE
   useEffect(() => {
-    window.addEventListener("resize", () => {
-      setScreenSize(window.screen.width);
-    });
+    const handleWindowResize = () => {
+      window.innerWidth <= 1024 ? setIsmobile(true) : setIsmobile(false);
+    };
 
-    window.screen.width <= 1024? setIsmobile(true) : setIsmobile(false)
-    
-  }, [screenSize]);
+    handleWindowResize();
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
 
   // FUNCTION THAT RETURNS THE NAVIGATION DATA WITHIN A LIST
   function returnNavData() {
@@ -49,15 +44,15 @@ export const NavBar = () => {
     );
   }
 
-  useEffect(()=> {
-    setIsMobileMenuOpen(false)
-  },[router.pathname])
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [router.pathname]);
 
   return (
     <NavBarContainer isMobileMenuOpen={isMobileMenuOpen}>
       <Logo onClick={() => router.push("/")}>
         <svg
-          width={isMobile? "250" : "400"}
+          width={isMobile ? "250" : "400"}
           viewBox="0 0 665 111"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -110,9 +105,7 @@ export const NavBar = () => {
         </>
       )}
 
-      {!isMobile && (
-        <Menu>{returnNavData()}</Menu>
-      )}
+      {!isMobile && <Menu>{returnNavData()}</Menu>}
     </NavBarContainer>
   );
 };

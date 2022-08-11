@@ -12,7 +12,7 @@ export const HomeWrapper = styled.div`
   margin: 0 auto;
   padding: 0 0.5%;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     flex-direction: column;
     padding: 0 2%;
   }
@@ -38,7 +38,7 @@ export const HeroContainer = styled.div`
     color: ${(props) => props.theme["secondary"]};
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     margin-top: 4rem;
     text-align: center;
     h1 {
@@ -53,7 +53,7 @@ export const HeroContainer = styled.div`
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     flex-direction: column;
   }
 
