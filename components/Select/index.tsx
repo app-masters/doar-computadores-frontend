@@ -1,5 +1,5 @@
-import React from "react";
-import { LabelWrapper, SelectContainer, SelectInput } from "./styles";
+import React from 'react';
+import { LabelWrapper, SelectContainer, SelectInput } from './styles';
 
 interface SelectProps {
   data: { value: string; label: string }[];

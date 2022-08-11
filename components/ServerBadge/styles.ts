@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 interface ServerBadgeProps {
   isServerRunning: boolean | null;
 }
 
 export const ServerBadgeWrapper = styled.div<ServerBadgeProps>`
-  display: ${(props) => (props.isServerRunning === null ? "none" : "initial")};
+  display: ${(props) => (props.isServerRunning === null ? 'none' : 'initial')};
   position: absolute;
   top: 1rem;
   /* left: 1rem; */
@@ -15,7 +15,7 @@ export const ServerBadgeWrapper = styled.div<ServerBadgeProps>`
   padding: 0.5rem;
 
   background-color: ${(props) =>
-    props.isServerRunning ? props.theme["green-300"] : props.theme["red-300"]};
+    props.isServerRunning ? props.theme['green-300'] : props.theme['red-300']};
   opacity: 0.8;
 
   transition: 0.5s ease;

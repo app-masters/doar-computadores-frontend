@@ -1,12 +1,7 @@
-import React, { FormEvent, InputHTMLAttributes, useCallback } from "react";
-import {
-  DeepRequired,
-  FieldErrorsImpl,
-  FieldValues,
-  UseFormRegister,
-} from "react-hook-form";
-import { phone, zipcode } from "./masks";
-import { InputContainer, InputText, LabelWrapper } from "./styles";
+import React, { FormEvent, InputHTMLAttributes, useCallback } from 'react';
+import { DeepRequired, FieldErrorsImpl, FieldValues, UseFormRegister } from 'react-hook-form';
+import { phone, zipcode } from './masks';
+import { InputContainer, InputText, LabelWrapper } from './styles';
 
 interface InputProps extends InputHTMLAttributes<HTMLElement> {
   inputType: string;
@@ -27,19 +22,19 @@ const Input = ({
   register,
   w,
   errors,
-  required = false
+  required = false,
 }: InputProps) => {
   // USECALLBACK TO GET THE INPUT MASK
   const handleKeyUp = useCallback(
     (e: FormEvent<HTMLInputElement>) => {
-      if (mask === "phone") {
+      if (mask === 'phone') {
         phone(e);
       }
-      if (mask === "zipcode") {
+      if (mask === 'zipcode') {
         zipcode(e);
       }
     },
-    [mask]
+    [mask],
   );
 
   return (

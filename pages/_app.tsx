@@ -1,10 +1,10 @@
-import type { AppProps } from "next/app";
-import { ToastContainer } from "react-toastify";
-import { ThemeProvider } from "styled-components";
-import { GlobalStyle } from "../styles/globals";
-import { defaultTheme } from "../styles/themes/default";
-import "react-toastify/dist/ReactToastify.min.css";
-import { Layout } from "../components/Layout";
+import type { AppProps } from 'next/app';
+import { ToastContainer } from 'react-toastify';
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyle } from '../styles/globals';
+import { defaultTheme } from '../styles/themes/default';
+import 'react-toastify/dist/ReactToastify.min.css';
+import { Layout } from '../components/Layout';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

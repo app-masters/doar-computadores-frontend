@@ -4,3 +4,4 @@
 yarn lint
 npx pretty-quick --staged --check
 npx tsc
+yarn build

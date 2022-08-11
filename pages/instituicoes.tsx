@@ -1,15 +1,10 @@
-import type { NextPage } from "next";
-import { institutionsMock } from "../utils/mocks/institutions";
-import Head from "next/head";
-import {
-  FaFacebook,
-  FaInstagram,
-  FaWhatsapp,
-  FaMapMarkerAlt,
-} from "react-icons/fa";
-import { BsGlobe } from "react-icons/bs";
-import Link from "next/link";
-import Container from "../components/Container";
+import type { NextPage } from 'next';
+import { institutionsMock } from '../utils/mocks/institutions';
+import Head from 'next/head';
+import { FaFacebook, FaInstagram, FaWhatsapp, FaMapMarkerAlt } from 'react-icons/fa';
+import { BsGlobe } from 'react-icons/bs';
+import Link from 'next/link';
+import Container from '../components/Container';
 import {
   CardWrapper,
   Divider,
@@ -18,7 +13,7 @@ import {
   LinksContainer,
   LocationContainer,
   TooltipContainer,
-} from "../styles/PagesStyle/instituicoesStyles";
+} from '../styles/PagesStyle/instituicoesStyles';
 
 const institutions: NextPage = () => {
   return (
@@ -51,41 +46,25 @@ const institutions: NextPage = () => {
               </LocationContainer>
               <LinksContainer>
                 <TooltipContainer>
-                  <a
-                    href={institutions.links.site}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <a href={institutions.links.site} target="_blank" rel="noopener noreferrer">
                     <BsGlobe />
                   </a>
                   <span className="tooltiptext">Visitar o site</span>
                 </TooltipContainer>
                 <TooltipContainer>
-                  <a
-                    href={institutions.links.instagram}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
+                  <a href={institutions.links.instagram} target="_blank" rel="noreferrer">
                     <FaInstagram />
                   </a>
                   <span className="tooltiptext">Visitar Instagram</span>
                 </TooltipContainer>
                 <TooltipContainer>
-                  <a
-                    href={institutions.links.facebook}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
+                  <a href={institutions.links.facebook} target="_blank" rel="noreferrer">
                     <FaFacebook />
                   </a>
                   <span className="tooltiptext">Visitar Facebook</span>
                 </TooltipContainer>
                 <TooltipContainer>
-                  <a
-                    href={institutions.links.whatsapp}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
+                  <a href={institutions.links.whatsapp} target="_blank" rel="noreferrer">
                     <FaWhatsapp />
                   </a>
                   <span className="tooltiptext">Visitar Whatsapp</span>

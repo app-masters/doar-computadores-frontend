@@ -1,4 +1,4 @@
-import { ServerBadgeWrapper } from "./styles";
+import { ServerBadgeWrapper } from './styles';
 
 interface ServerBadgeProps {
   isServerRunning: boolean | null;

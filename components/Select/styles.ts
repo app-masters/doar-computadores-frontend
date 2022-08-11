@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 interface SelectContainerProps {
   w: string;
@@ -15,7 +15,7 @@ export const LabelWrapper = styled.div`
   align-items: center;
 
   & > p {
-    color: ${(props) => props.theme["red-300"]};
+    color: ${(props) => props.theme['red-300']};
     font-size: 0.75rem;
   }
 `;
@@ -29,7 +29,7 @@ export const SelectInput = styled.select`
   border-radius: 0.5rem;
 
   font-weight: bold;
-  color: ${(props) => props.theme["gray-600"]};
+  color: ${(props) => props.theme['gray-600']};
 
   option {
     font-weight: bold;
