@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const InstitutionsContainer = styled.div`
   display: flex;
@@ -23,7 +23,7 @@ export const InstitutionsContainer = styled.div`
   }
 
   @media (max-width: 768px) {
-    padding:0 2%;
+    padding: 0 2%;
     text-align: center;
   }
 `;
@@ -34,7 +34,6 @@ export const CardWrapper = styled.div`
   margin-left: 1rem;
   flex-wrap: wrap;
   min-width: 25%;
-
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -51,7 +50,7 @@ export const CardWrapper = styled.div`
 export const InstitutionCard = styled.div`
   margin-bottom: 1rem;
 
-  background-color: ${(props) => props.theme["gray-50"]};
+  background-color: ${(props) => props.theme['gray-50']};
   border-radius: 0.5rem;
   padding: 0.5rem;
 
@@ -59,7 +58,7 @@ export const InstitutionCard = styled.div`
   width: calc(25% - 1rem);
 
   p {
-    color: ${(props) => props.theme["gray-700"]};
+    color: ${(props) => props.theme['gray-700']};
     text-align: center;
   }
 
@@ -108,7 +107,7 @@ export const LocationContainer = styled.div`
     gap: 0.5rem;
   }
   b {
-    color: ${(props) => props.theme["gray-900"]};
+    color: ${(props) => props.theme['gray-900']};
     font-weight: 500;
   }
 `;
@@ -120,7 +119,7 @@ export const LinksContainer = styled.div`
   gap: 0.5rem;
   font-size: 1.5rem;
   a {
-    color: ${(props) => props.theme["gray-700"]};
+    color: ${(props) => props.theme['gray-700']};
   }
 `;
 
@@ -131,7 +130,7 @@ export const TooltipContainer = styled.div`
   && .tooltiptext {
     visibility: hidden;
     width: 120px;
-    background-color: ${(props) => props.theme["gray-900"]};
+    background-color: ${(props) => props.theme['gray-900']};
     font-weight: 100;
     font-size: 1rem;
     color: #fff;
@@ -148,15 +147,14 @@ export const TooltipContainer = styled.div`
   }
 
   && .tooltiptext::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 100%;
     left: 50%;
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: ${(props) => props.theme["gray-900"]} transparent transparent
-      transparent;
+    border-color: ${(props) => props.theme['gray-900']} transparent transparent transparent;
   }
 
   &&:hover .tooltiptext {
@@ -167,5 +165,5 @@ export const TooltipContainer = styled.div`
 
 export const Divider = styled.div`
   width: 100%;
-  border-bottom: 2px solid ${(props) => props.theme["gray-100"]};
+  border-bottom: 2px solid ${(props) => props.theme['gray-100']};
 `;

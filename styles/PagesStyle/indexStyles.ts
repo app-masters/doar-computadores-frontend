@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 export const HomeWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -6,7 +6,7 @@ export const HomeWrapper = styled.div`
 
   min-height: calc(100vh - 6rem);
 
-  background: ${(props) => props.theme["primary"]};
+  background: ${(props) => props.theme['primary']};
 
   max-width: 1440px;
   margin: 0 auto;
@@ -35,7 +35,7 @@ export const HeroContainer = styled.div`
   h3,
   h4,
   p {
-    color: ${(props) => props.theme["secondary"]};
+    color: ${(props) => props.theme['secondary']};
   }
 
   @media (max-width: 1024px) {

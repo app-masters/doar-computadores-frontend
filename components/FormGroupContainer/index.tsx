@@ -1,4 +1,4 @@
-import { FormGroupWrapper } from "./styles";
+import { FormGroupWrapper } from './styles';
 
 interface FormGroupContainerProps {
   title: string;
