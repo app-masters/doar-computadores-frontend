@@ -1,18 +1,10 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { render } from "react-dom";
+import { useEffect, useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { navData } from "../../utils/mocks/navData";
-import {
-  ListItemActived,
-  Logo,
-  Menu,
-  MenuBars,
-  MenuMobile,
-  NavBarContainer,
-} from "./styles";
+import { Logo, Menu, MenuBars, MenuMobile, NavBarContainer } from "./styles";
 
 export const NavBar = () => {
   const router = useRouter();
@@ -25,6 +17,7 @@ export const NavBar = () => {
       window.innerWidth <= 1024 ? setIsmobile(true) : setIsmobile(false);
     };
 
+    handleWindowResize();
     window.addEventListener("resize", handleWindowResize);
 
     return () => {
