@@ -45,10 +45,6 @@ export const FormDataContainer = styled.form`
   @media (max-width: 1440px) {
     width: 100%;
   }
-
-  @media (min-width: 1440px) {
-    width: 40%;
-  }
 `;
 
 interface ButtonProps {
@@ -72,6 +68,8 @@ export const Button = styled.button<ButtonProps>`
 
   &:hover {
     background-color: ${(props) => props.theme['blue-500']};
+  &:hover {
+    background-color: ${(props) => props.theme['blue-500']};
   }
 `;
 
@@ -80,6 +78,5 @@ export const CenterContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  margin: 1rem 0;
+  padding: 1.5rem 1rem;
 `;

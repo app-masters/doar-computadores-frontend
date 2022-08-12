@@ -52,6 +52,11 @@ const Home: NextPage = () => {
 
       <HeroContainer>
         <ServerBadge isServerRunning={isServerRunning} />
+        <div>
+          <h1>Deseja receber doações para a sua instituição?</h1>
+          <h2>Cadastre-se aqui!</h2>
+        </div>
+        <Image src={giftImage} alt="a gift" layout="intrinsic" />
       </HeroContainer>
       <InstitutionRegistrationForm />
     </HomeWrapper>
