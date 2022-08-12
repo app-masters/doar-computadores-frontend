@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import api from "../services/api";
 
-import DataSubmissionForm from "../components/DataSubmissionForm";
+import InstitutionRegistrationForm from "../components/InstitutionRegistrationForm";
 import Container from "../components/Container";
 import Image from "next/image";
 import giftImage from "../public/gift.svg";
@@ -53,7 +53,7 @@ const Home: NextPage = () => {
       <HeroContainer>
         <ServerBadge isServerRunning={isServerRunning} />
       </HeroContainer>
-      <DataSubmissionForm />
+      <InstitutionRegistrationForm />
     </HomeWrapper>
   );
 };
