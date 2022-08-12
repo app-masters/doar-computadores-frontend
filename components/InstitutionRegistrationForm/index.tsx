@@ -19,21 +19,21 @@ import FormGroupContainer from '../FormGroupContainer';
 
 // VALIDATION FORM SCHEMA
 const newInstitutionFormValidationSchema = zod.object({
-  name: zod.string().min(1, 'Informe o nome da instituição'),
-  email: zod.string().min(1, 'Informe o seu E-mail').email('Utilize um E-mail valido!'),
-  phone: zod.string().min(1, 'Informe o seu Telefone'),
-  zip: zod.string().min(1, 'Informe o seu CEP'),
-  city: zod.string().min(1, 'Informe sua cidade'),
-  state: zod.string().min(1, 'Informe seu estado'),
-  streetAddress: zod.string().min(1, 'Informe o seu endereço'),
-  number: zod.string().min(1, 'Informe o seu número'),
-  complement: zod.string().nullable(),
-  neighborhood: zod.string().min(1, 'Informe o seu bairro'),
-  type: zod.string().min(1, 'Selecione o tipo da instituição'),
-  urlInstagram: zod.string().nullable(),
-  urlLinkedin: zod.string().nullable(),
-  urlSite: zod.string().nullable(),
-  description: zod.string().min(1, 'Insira uma descrição'),
+  name: zod.string(),
+  email: zod.string(),
+  phone: zod.string(),
+  zip: zod.string(),
+  city: zod.string(),
+  state: zod.string(),
+  streetAddress: zod.string(),
+  number: zod.string(),
+  complement: zod.string(),
+  neighborhood: zod.string(),
+  type: zod.string(),
+  urlInstagram: zod.string(),
+  urlLinkedin: zod.string(),
+  urlSite: zod.string(),
+  description: zod.string(),
 });
 
 const InstitutionRegistrationForm = () => {
@@ -108,6 +108,7 @@ const InstitutionRegistrationForm = () => {
           toast('Preencha os campos obrigatórios corretamente!', {
             type: 'error',
           });
+
           for (const field of error.response.data.requiredFields) {
             setError(field, {
               type: 'custom',
@@ -184,7 +185,7 @@ const InstitutionRegistrationForm = () => {
           inputType="text"
           w={'100%'}
           label="Nome"
-          placeholder="João"
+          placeholder="Instituição X"
           register={register('name')}
           errors={errors}
           required={true}
@@ -193,7 +194,7 @@ const InstitutionRegistrationForm = () => {
           inputType="email"
           w={'50%'}
           label="E-mail"
-          placeholder="joaosilva@gmail.com"
+          placeholder="instituicao@gmail.com"
           register={register('email')}
           errors={errors}
           required={true}
