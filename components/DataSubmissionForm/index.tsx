@@ -215,7 +215,7 @@ const DataSubmissionForm = ({setFormHeight}: DataSubmissionFormProps) => {
       </FormGroupContainer>,
     );
   }
-  
+  // IF THE FORMREF HAS A CURRENT WILL BE SET THE FORMHEIGHT
   if(formRef.current){
     setFormHeight(formRef.current.clientHeight)
   }
