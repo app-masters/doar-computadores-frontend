@@ -112,10 +112,14 @@ export const LocationContainer = styled.div`
   }
 `;
 
-export const LinksContainer = styled.div`
+interface LinksContainerProps {
+  justify?: 'flex-start' | 'center' | 'flex-end';
+}
+
+export const LinksContainer = styled.div<LinksContainerProps>`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: ${(props) => props.justify || 'center'};
   gap: 0.5rem;
   font-size: 1.5rem;
   a {
@@ -123,7 +127,11 @@ export const LinksContainer = styled.div`
   }
 `;
 
-export const TooltipContainer = styled.div`
+interface TooltipContainerProps {
+  disabled?: boolean;
+}
+
+export const TooltipContainer = styled.div<TooltipContainerProps>`
   position: relative;
   display: inline-block;
 
@@ -158,12 +166,92 @@ export const TooltipContainer = styled.div`
   }
 
   &&:hover .tooltiptext {
-    visibility: visible;
+    visibility: ${(props) => (props.disabled ? 'hidden' : 'visible')};
     opacity: 0.95;
+  }
+
+  && svg {
+    color: ${(props) => (props.disabled ? '#f0f0f0' : '#000000')};
   }
 `;
 
 export const Divider = styled.div`
   width: 100%;
   border-bottom: 2px solid ${(props) => props.theme['gray-100']};
+`;
+
+export const ExtendedInstitution = styled.div`
+  width: 100%;
+  background-color: #ffffff;
+  padding: 2em;
+
+  h3 {
+    margin-top: 1.5em;
+  }
+
+  a {
+    display: block;
+    width: fit-content;
+    text-decoration: none;
+    color: #6f6fff;
+    margin-bottom: 0.2em;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+      margin-right: 0.5em;
+    }
+
+    &.inline {
+      display: inline-block;
+    }
+
+    &:not([href]) {
+      color: #a0a0a0;
+    }
+  }
+
+  span.divider {
+    display: block;
+    border-bottom: 1px solid #f0f0f0;
+    margin: 2em 0;
+  }
+
+  div.buttons {
+    display: inline-flex;
+    float: right;
+    align-items: center;
+    justify-content: flex-end;
+    column-gap: 1em;
+  }
+
+  button {
+    padding: 0.2em 1.5em;
+    border: none;
+    border-radius: 0.5rem;
+    transition: 0.5s ease;
+    cursor: pointer;
+  }
+
+  button.reject {
+    background-color: #f09f9f;
+
+    &:hover {
+      background-color: #ffc6c6;
+    }
+  }
+
+  button.approve {
+    background-color: #9ff09f;
+
+    &:hover {
+      background-color: #c6ffc6;
+    }
+  }
+
+  @media (min-width: 1025px) {
+    width: 80%;
+    max-width: 1024px;
+  }
 `;
