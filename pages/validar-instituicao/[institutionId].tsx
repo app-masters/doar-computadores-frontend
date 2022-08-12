@@ -37,6 +37,12 @@ export interface InstitutionType {
   type: 'recycling' | 'socialEdTech' | 'socialOther';
 }
 
+const typeDescription = {
+  recycling: 'Reciclagem de eletrônicos',
+  socialEdTech: 'Projeto social ligado à educação/tecnologia',
+  socialOther: 'Outros tipos de projetos sociais',
+};
+
 const InstitutionValidate: NextPage = () => {
   // SETUP ROUTE INFO
   const router = useRouter();
@@ -112,6 +118,8 @@ const InstitutionValidate: NextPage = () => {
         <ExtendedInstitution>
           <h3>Nome</h3>
           <span>{institution?.name || 'Nenhum'}</span>
+          <h3>Tipo</h3>
+          <span>{typeDescription[institution?.type] || 'Nenhum'}</span>
           <h3>Apresentação</h3>
           <span>{institution?.description || 'Nehuma'}</span>
           <h3>Endereço</h3>
