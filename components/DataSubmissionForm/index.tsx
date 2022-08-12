@@ -224,7 +224,6 @@ const DataSubmissionForm = ({setFormHeight}: DataSubmissionFormProps) => {
   if(amountDevicesRef.current){
    if(deviceCount > 0){
     amountDevicesRef.current.scrollIntoView()
-    console.log(amountDevicesRef.current.topHeight)
    }
   }
 
