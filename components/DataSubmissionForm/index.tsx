@@ -1,4 +1,5 @@
-import { FormEventHandler, useEffect, useState } from 'react';
+import { Dispatch, FormEventHandler, MutableRefObject, SetStateAction, useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/router';
 
 // LIBS
 import { useForm } from 'react-hook-form';
@@ -36,7 +37,15 @@ const newDonationFormValidationSchema = zod.object({
   condition0: zod.string().min(1, 'Selecione a condição'),
 });
 
-const DataSubmissionForm = () => {
+interface DataSubmissionFormProps {
+  setFormHeight: Dispatch<SetStateAction<any>>
+}
+
+const DataSubmissionForm = ({setFormHeight}: DataSubmissionFormProps) => {
+  const formRef = useRef<null | HTMLFormElement>(null)
+  const amountDevicesRef = useRef<null | HTMLDivElement>(null)
+  const router = useRouter()
+
   const {
     register,
     handleSubmit,
@@ -206,9 +215,20 @@ const DataSubmissionForm = () => {
       </FormGroupContainer>,
     );
   }
+  
+  if(formRef.current){
+    setFormHeight(formRef.current.clientHeight)
+  }
+
+  // IF THE DEVICECOUNT GRATHER THAN 0 HE TRY TO STROLL TO DEVICESREF
+  if(amountDevicesRef.current){
+   if(deviceCount > 0){
+    amountDevicesRef.current.scrollIntoView()
+   }
+  }
 
   return (
-    <FormDataContainer onSubmit={handleSubmit(handleNewDonation)} action="">
+    <FormDataContainer ref={formRef} onSubmit={handleSubmit(handleNewDonation)} action="">
       {loading && <Spinner />}
       {/* PERSONAL DATA INPUTS */}
       <CenterContainer>
@@ -317,6 +337,7 @@ const DataSubmissionForm = () => {
 
       {/* AMOUNT OF DEDVICES TO DONATE */}
       <FormGroupContainer title="Dispositivos">
+        <div ref={ amountDevicesRef}></div>
         <Input
           inputType="number"
           w={'100%'}

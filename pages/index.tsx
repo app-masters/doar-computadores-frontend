@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-page-custom-font */
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import api from '../services/api';
 
@@ -9,7 +9,7 @@ import DataSubmissionForm from '../components/DataSubmissionForm';
 import Container from '../components/Container';
 import Image from 'next/image';
 import giftImage from '../public/gift.svg';
-import { HeroContainer, HomeWrapper } from '../styles/PagesStyle/indexStyles';
+import { HeroContainer, HomeWrapper, StickyContainer } from '../styles/PagesStyle/indexStyles';
 import ServerBadge from '../components/ServerBadge';
 
 interface VerifyStatusServerResponse {
@@ -18,6 +18,12 @@ interface VerifyStatusServerResponse {
 
 const Home: NextPage = () => {
   const [isServerRunning, setIsServerRunning] = useState<boolean | null>(null);
+  const [formHeight, setFormHeight] = useState(0);
+  const formRef = useRef(null)
+
+  useEffect(() => {
+    console.log(formRef, 'TESTE FORM REF')
+  }, [formRef])
 
   // VERIFY THE SERVER STATUS
   function verifyServerStatus() {
@@ -37,6 +43,10 @@ const Home: NextPage = () => {
     verifyServerStatus();
   }, []);
 
+  useEffect(() => {
+    console.log(formHeight, 'TESTE FORMHEIGHT')
+  }, [formHeight])
+
   return (
     <HomeWrapper>
       <Head>
@@ -50,8 +60,9 @@ const Home: NextPage = () => {
         />
       </Head>
 
-      <HeroContainer>
+      <HeroContainer formHeight={formHeight}>
         <ServerBadge isServerRunning={isServerRunning} />
+        <StickyContainer>
         <div>
           <h1>Doação de computadores usados</h1>
           <h2>Possui um computador que por algum motivo não usa mais?</h2>
@@ -59,8 +70,9 @@ const Home: NextPage = () => {
         </div>
 
         <Image src={giftImage} alt="a gift" layout="intrinsic" />
+        </StickyContainer>
       </HeroContainer>
-      <DataSubmissionForm />
+      <DataSubmissionForm setFormHeight={setFormHeight}/>
     </HomeWrapper>
   );
 };
