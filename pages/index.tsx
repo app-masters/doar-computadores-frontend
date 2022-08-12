@@ -21,10 +21,6 @@ const Home: NextPage = () => {
   const [formHeight, setFormHeight] = useState(0);
   const formRef = useRef(null)
 
-  useEffect(() => {
-    console.log(formRef, 'TESTE FORM REF')
-  }, [formRef])
-
   // VERIFY THE SERVER STATUS
   function verifyServerStatus() {
     // API QUERY TO GET SERVER STATUS
@@ -42,10 +38,6 @@ const Home: NextPage = () => {
   useEffect(() => {
     verifyServerStatus();
   }, []);
-
-  useEffect(() => {
-    console.log(formHeight, 'TESTE FORMHEIGHT')
-  }, [formHeight])
 
   return (
     <HomeWrapper>
