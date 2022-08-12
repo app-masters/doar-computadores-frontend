@@ -187,6 +187,7 @@ export const ExtendedInstitution = styled.div`
 
   h3 {
     margin-top: 1.5em;
+    color: ${(props) => props.theme['gray-400']};
   }
 
   a {
@@ -240,7 +241,7 @@ export const ExtendedInstitution = styled.div`
     color: ${(props) => props.theme['primary']};
 
     &:hover {
-      background-color: ${(props) => props.theme['red-50']};
+      background-color: ${(props) => props.theme['blue-50']};
     }
   }
 
@@ -250,7 +251,7 @@ export const ExtendedInstitution = styled.div`
     color: ${(props) => props.theme['primary']};
 
     &:hover {
-      background-color: ${(props) => props.theme['green-50']};
+      background-color: ${(props) => props.theme['blue-50']};
     }
   }
 

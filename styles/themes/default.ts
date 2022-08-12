@@ -13,13 +13,13 @@ export const defaultTheme = {
   'gray-900': '#121214',
   'gray-950': '#0F0F0F',
 
-  'green-50': '#F0FFF0',
   'green-300': '#21D19F',
 
+  'blue-50': '#E5F7FF',
+  'blue-100': '#D6F3FF',
   'blue-300': '#57DDFF',
   'blue-500': '#57DDFF',
 
-  'red-50': '#FFF0F0',
   'red-300': '#ED4D6E',
   'red-500': '#BB342F',
   'red-700': '#7A1921',
