@@ -193,7 +193,7 @@ export const ExtendedInstitution = styled.div`
     display: block;
     width: fit-content;
     text-decoration: none;
-    color: #6f6fff;
+    color: #4f4fff;
     margin-bottom: 0.2em;
 
     svg {
@@ -227,7 +227,7 @@ export const ExtendedInstitution = styled.div`
   }
 
   button {
-    padding: 0.2em 1.5em;
+    padding: 0.3em 1.5em;
     border: none;
     border-radius: 0.5rem;
     transition: 0.5s ease;
@@ -235,18 +235,22 @@ export const ExtendedInstitution = styled.div`
   }
 
   button.reject {
-    background-color: #f09f9f;
+    border: 1px solid ${(props) => props.theme['primary']};
+    background-color: transparent;
+    color: ${(props) => props.theme['primary']};
 
     &:hover {
-      background-color: #ffc6c6;
+      background-color: ${(props) => props.theme['red-50']};
     }
   }
 
   button.approve {
-    background-color: #9ff09f;
+    border: 1px solid ${(props) => props.theme['primary']};
+    background-color: transparent;
+    color: ${(props) => props.theme['primary']};
 
     &:hover {
-      background-color: #c6ffc6;
+      background-color: ${(props) => props.theme['green-50']};
     }
   }
 

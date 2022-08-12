@@ -1,18 +1,12 @@
-import axios from 'axios';
+import axios from '../../services/api';
 import { NextPage } from 'next';
 import Error from 'next/error';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { BsGlobe } from 'react-icons/bs';
-import {
-  FaEnvelope,
-  FaFacebook,
-  FaInstagram,
-  FaLinkedin,
-  FaMapMarkerAlt,
-  FaWhatsapp,
-} from 'react-icons/fa';
+import { FaEnvelope, FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 import Container from '../../components/Container';
 import Spinner from '../../components/Spinner';
 import { ExtendedInstitution } from '../../styles/PagesStyle/instituicoesStyles';
@@ -66,7 +60,7 @@ const InstitutionValidate: NextPage = () => {
     setLoading(true);
 
     axios
-      .get(`/api/instituicoes/${institutionId}`)
+      .get(`/institution/${institutionId}`)
       .then((res) => {
         setInstitution(res.data);
         console.log(res);
@@ -84,8 +78,18 @@ const InstitutionValidate: NextPage = () => {
   const sendValidationRequest = (validated: boolean) => {
     axios
       .put(`/institution/${institutionId}`, { validated })
-      .then((res) => {})
-      .catch((err) => {})
+      .then((res) => {
+        toast(`A instituição foi ${validated ? 'validada' : 'rejeitada'}!`, {
+          type: 'success',
+        });
+        console.log(res);
+      })
+      .catch((err) => {
+        toast('Ocorreu um problema! Tente novamente', {
+          type: 'error',
+        });
+        console.log(err);
+      })
       .finally(() => {});
   };
 
@@ -107,12 +111,12 @@ const InstitutionValidate: NextPage = () => {
       ) : (
         <ExtendedInstitution>
           <h3>Nome</h3>
-          <span>{institution?.name}</span>
+          <span>{institution?.name || 'Nenhum'}</span>
           <h3>Apresentação</h3>
-          <span>{institution?.description}</span>
+          <span>{institution?.description || 'Nehuma'}</span>
           <h3>Endereço</h3>
           <span>
-            {mountedAddress}
+            {mountedAddress || 'Nenhum'}
             {institution?.address.complement} —{' '}
             <a
               className="inline"
