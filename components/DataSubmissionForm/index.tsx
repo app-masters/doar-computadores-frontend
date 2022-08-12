@@ -224,6 +224,7 @@ const DataSubmissionForm = ({setFormHeight}: DataSubmissionFormProps) => {
   if(amountDevicesRef.current){
    if(deviceCount > 0){
     amountDevicesRef.current.scrollIntoView()
+    console.log(amountDevicesRef.current.topHeight)
    }
   }
 
@@ -333,11 +334,12 @@ const DataSubmissionForm = ({setFormHeight}: DataSubmissionFormProps) => {
           errors={errors}
           required={false}
         />
+        {/*THIS DIV USES THE REF WHERE THE SCROLL WILL STOP WHEN CHANGE THE DEVICECOUNT VALUE*/}
+       <div ref={ amountDevicesRef}></div>
       </FormGroupContainer>
 
       {/* AMOUNT OF DEDVICES TO DONATE */}
       <FormGroupContainer title="Dispositivos">
-        <div ref={ amountDevicesRef}></div>
         <Input
           inputType="number"
           w={'100%'}
