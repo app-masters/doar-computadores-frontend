@@ -1,16 +1,16 @@
 /* eslint-disable @next/next/no-page-custom-font */
-import type { NextPage } from "next";
-import Head from "next/head";
-import { useEffect, useState } from "react";
+import type { NextPage } from 'next';
+import Head from 'next/head';
+import { useEffect, useState } from 'react';
 
-import api from "../services/api";
+import api from '../services/api';
 
-import InstitutionRegistrationForm from "../components/InstitutionRegistrationForm";
-import Container from "../components/Container";
-import Image from "next/image";
-import giftImage from "../public/gift.svg";
-import { HeroContainer, HomeWrapper } from "../styles/PagesStyle/indexStyles";
-import ServerBadge from "../components/ServerBadge";
+import InstitutionRegistrationForm from '../components/InstitutionRegistrationForm';
+import Container from '../components/Container';
+import Image from 'next/image';
+import giftImage from '../public/gift.svg';
+import { HeroContainer, HomeWrapper } from '../styles/PagesStyle/indexStyles';
+import ServerBadge from '../components/ServerBadge';
 
 interface VerifyStatusServerResponse {
   alive: boolean;
@@ -23,7 +23,7 @@ const Home: NextPage = () => {
   function verifyServerStatus() {
     // API QUERY TO GET SERVER STATUS
     api
-      .get<VerifyStatusServerResponse>("")
+      .get<VerifyStatusServerResponse>('')
       .then((response) => {
         setIsServerRunning(response.data.alive);
       })
