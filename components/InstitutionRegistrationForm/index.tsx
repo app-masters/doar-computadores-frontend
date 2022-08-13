@@ -1,4 +1,4 @@
-import { FormEventHandler, useEffect, useState } from 'react';
+import { FormEventHandler, useEffect, useRef, useState } from 'react';
 
 // LIBS
 import { useForm } from 'react-hook-form';
@@ -51,8 +51,20 @@ const InstitutionRegistrationForm = () => {
     resolver: zodResolver(newInstitutionFormValidationSchema),
   });
   const [loading, setLoading] = useState(false);
+  const refs: any = {
+    name: useRef<null | HTMLElement>(null),
+    email: useRef<null | HTMLElement>(null),
+    phone: useRef<null | HTMLElement>(null),
+    zip: useRef<null | HTMLElement>(null),
+    city: useRef<null | HTMLElement>(null),
+    state: useRef<null | HTMLElement>(null),
+    streetAddress: useRef<null | HTMLElement>(null),
+    number: useRef<null | HTMLElement>(null),
+    neighborhood: useRef<null | HTMLElement>(null),
+    description: useRef<null | HTMLElement>(null),
+  };
 
-  const institutionTypes = [
+  const institutionTypes: Array<any> = [
     {
       value: 'recycling',
       label: 'Reciclagem de eletrônicos',
@@ -76,7 +88,7 @@ const InstitutionRegistrationForm = () => {
     const dataToStore = {
       name: fieldsValues.name,
       email: fieldsValues.email,
-      phone: fieldsValues.phone,
+      phone: fieldsValues.phone.replace(/\D/g, ''),
       zip: fieldsValues.zip,
       city: fieldsValues.city,
       state: fieldsValues.state,
@@ -92,31 +104,35 @@ const InstitutionRegistrationForm = () => {
       description: fieldsValues.description,
     };
     api
-      .post('cadastrar-instituicao', dataToStore)
+      .post('institution', dataToStore)
       .then((response) => {
         toast('Formulário enviado com sucesso!', { type: 'success' });
         reset();
         setLoading(false);
       })
       .catch((error) => {
-        if (error.response.data.error && !error.response.data.requiredFields) {
+        //VERFICA O CÓDIGO, SE FOR 400 EXIBE MAIS DETALHES DO ERRO
+        if (error.response.status == 400) {
+          toast(error.response.data.errorMessage, { type: 'error' });
+
+          if (error.response.data.requiredFields) {
+            const firstErrorField: string = error.response.data.requiredFields[0];
+            refs[firstErrorField].current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            for (const field of error.response.data.requiredFields) {
+              setError(field, {
+                type: 'custom',
+                message: 'Preencha corretamente!',
+              });
+            }
+          }
+        } else {
           toast('Ocorreu um erro de conexão com o servidor tente novamente em alguns segundos!', {
             type: 'error',
           });
-          setLoading(false);
-        } else {
-          toast('Preencha os campos obrigatórios corretamente!', {
-            type: 'error',
-          });
-
-          for (const field of error.response.data.requiredFields) {
-            setError(field, {
-              type: 'custom',
-              message: 'Preencha corretamente!',
-            });
-          }
-          setLoading(false);
         }
+
+        setLoading(false);
       });
   }
   // FUNCTION THAT GET ADDRESS DATA
@@ -182,6 +198,7 @@ const InstitutionRegistrationForm = () => {
       </CenterContainer>
       <FormGroupContainer title="Dados da instituição">
         <Input
+          refProp={refs.name}
           inputType="text"
           w={'100%'}
           label="Nome"
@@ -191,6 +208,7 @@ const InstitutionRegistrationForm = () => {
           required={true}
         />
         <Input
+          refProp={refs.email}
           inputType="email"
           w={'50%'}
           label="E-mail"
@@ -200,6 +218,7 @@ const InstitutionRegistrationForm = () => {
           required={true}
         />
         <Input
+          refProp={refs.phone}
           inputType="text"
           w={'50%'}
           label="Telefone"
@@ -214,6 +233,7 @@ const InstitutionRegistrationForm = () => {
       {/* ADDRESS DATA INPUTS */}
       <FormGroupContainer title="Endereço">
         <Input
+          refProp={refs.zip}
           inputType="text"
           w={'50%'}
           label="CEP"
@@ -224,6 +244,7 @@ const InstitutionRegistrationForm = () => {
           required={true}
         />
         <Input
+          refProp={refs.city}
           inputType="text"
           w={'50%'}
           label="Cidade"
@@ -234,6 +255,7 @@ const InstitutionRegistrationForm = () => {
           required={true}
         />
         <Input
+          refProp={refs.state}
           inputType="text"
           w={'50%'}
           label="Estado"
@@ -244,6 +266,7 @@ const InstitutionRegistrationForm = () => {
           required={true}
         />
         <Input
+          refProp={refs.neighborhood}
           inputType="text"
           w={'50%'}
           label="Bairro"
@@ -253,6 +276,7 @@ const InstitutionRegistrationForm = () => {
           required={true}
         />
         <Input
+          refProp={refs.streetAddress}
           inputType="text"
           w={'50%'}
           label="Endereço"
@@ -262,6 +286,7 @@ const InstitutionRegistrationForm = () => {
           required={true}
         />
         <Input
+          refProp={refs.number}
           inputType="text"
           w={'50%'}
           label="Número"
@@ -284,6 +309,7 @@ const InstitutionRegistrationForm = () => {
       {/* DETAILS AND SOCIAL MEDIA INPUTS */}
       <FormGroupContainer title="Detalhes da instituição">
         <Input
+          refProp={refs.description}
           inputType="text"
           w={'100%'}
           label="Descrição"
