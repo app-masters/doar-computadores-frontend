@@ -2,7 +2,7 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 
-[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
@@ -47,6 +47,7 @@ yarn prettier --write .
     <td align="center"><a href="https://www.linkedin.com/in/thiago-abreu-8556861b5/"><img src="https://avatars.githubusercontent.com/u/54290435?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Thiago Abreu</b></sub></a><br /><a href="https://github.com/App Masters/doar-computadores-frontend/commits?author=abreuthrj" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/jfbaraky"><img src="https://avatars.githubusercontent.com/u/20716607?v=4?s=100" width="100px;" alt=""/><br /><sub><b>João Fernando Baraky</b></sub></a><br /><a href="#ideas-jfbaraky" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://github.com/Patrick448"><img src="https://avatars.githubusercontent.com/u/48632357?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Patrick Carvalho</b></sub></a><br /><a href="https://github.com/App Masters/doar-computadores-frontend/commits?author=Patrick448" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/douglassantos45"><img src="https://avatars.githubusercontent.com/u/45425938?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Douglas Tott</b></sub></a><br /><a href="https://github.com/App Masters/doar-computadores-frontend/commits?author=douglassantos45" title="Code">💻</a></td>
   </tr>
 </table>
 
