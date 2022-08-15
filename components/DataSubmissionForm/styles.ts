@@ -5,7 +5,7 @@ export const FormDataContainer = styled.form`
   /* padding: 0.5rem; */
   /* margin: 1rem; */
   border-radius: 0.25rem;
-  max-height: 800px;
+  /* max-height: 800px; */
   width: 50%;
   background-color: ${(props) => props.theme['gray-50']};
 

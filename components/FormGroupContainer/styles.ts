@@ -5,7 +5,7 @@ export const FormGroupWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
 
-  border-top: 2px solid ${(props) => props.theme['gray-100']};
+  border-top: 2px solid ${(props) => props.theme['gray-300']};
   padding: 0.5rem 0;
 
   width: 98%;
@@ -13,7 +13,7 @@ export const FormGroupWrapper = styled.div`
 
   && > p {
     background: ${(props) => props.theme['gray-50']};
-    color: ${(props) => props.theme['gray-300']};
+    color: ${(props) => props.theme['gray-500']};
     position: absolute;
     top: -14px;
     left: 1rem;

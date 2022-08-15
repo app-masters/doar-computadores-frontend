@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 export const HomeWrapper = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
 
   min-height: calc(100vh - 6rem);
@@ -18,11 +18,17 @@ export const HomeWrapper = styled.div`
   }
 `;
 
-export const HeroContainer = styled.div`
+interface HeroContainerProps {
+  formHeight: number;
+}
+
+export const HeroContainer = styled.div<HeroContainerProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  overflow: initial;
+  height: ${props => props.formHeight > 0? `${props.formHeight}px` : '100%'};
 
   margin: 1rem;
 
@@ -62,3 +68,8 @@ export const HeroContainer = styled.div`
     width: 40%;
   }
 `;
+
+export const StickyContainer = styled.div`
+  position: sticky;
+  top: 6rem;
+`
