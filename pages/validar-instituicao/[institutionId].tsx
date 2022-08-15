@@ -12,29 +12,26 @@ import Spinner from '../../components/Spinner';
 import { ExtendedInstitution } from '../../styles/PagesStyle/instituicoesStyles';
 
 export interface InstitutionRouteParams {
-  institutionId?: string;
+  institutionId?: number;
 }
 
 export interface InstitutionType {
   name: string;
   email: string;
   phone: string;
-  address: {
-    zip: string;
-    streetAddress: string;
-    neighborhood: string;
-    city: string;
-    state: string;
-    complement?: string;
-  };
+  zip: string;
+  streetAddress: string;
+  neighborhood: string;
+  city: string;
+  state: string;
+  complement?: string;
   description: string;
-  links: {
-    urlInstagram?: string;
-    urlLinkedin?: string;
-    urlFacebook?: string;
-    urlSite?: string;
-  };
+  urlInstagram?: string;
+  urlLinkedin?: string;
+  urlFacebook?: string;
+  urlSite?: string;
   type: 'recycling' | 'socialEdTech' | 'socialOther';
+  id: number;
 }
 
 const typeDescription = {
@@ -53,7 +50,7 @@ const InstitutionValidate: NextPage = () => {
   const [institution, setInstitution] = useState<InstitutionType | null>(null);
 
   // MOUNT FORMATTED ADDRESS
-  const mountedAddress = `${institution?.address.streetAddress} - ${institution?.address.neighborhood}, ${institution?.address.city} - ${institution?.address.state}, ${institution?.address.zip}`;
+  const mountedAddress = `${institution?.streetAddress} - ${institution?.neighborhood}, ${institution?.city} - ${institution?.state}, ${institution?.zip}`;
 
   // LISTEN TO COMPONENT MOUNT, REQUESTING INSTITUTION
   // AND SETTING IT'S FETCH STATE
@@ -66,9 +63,13 @@ const InstitutionValidate: NextPage = () => {
     setLoading(true);
 
     axios
-      .get(`/institution/${institutionId}`)
+      .get<InstitutionType[]>(`/institution`)
       .then((res) => {
-        setInstitution(res.data);
+        const filteredInstitution = res.data.find((institution) => institution.id == institutionId);
+
+        if (!filteredInstitution) throw 'Institution not found';
+
+        setInstitution(filteredInstitution);
         console.log(res);
       })
       .catch((err) => {
@@ -125,7 +126,7 @@ const InstitutionValidate: NextPage = () => {
           <h3>Endereço</h3>
           <span>
             {mountedAddress || 'Nenhum'}
-            {institution?.address.complement} —{' '}
+            {institution?.complement} —{' '}
             <a
               className="inline"
               href={`https://google.com.br/maps/search/${mountedAddress}`}
@@ -137,31 +138,39 @@ const InstitutionValidate: NextPage = () => {
           </span>
           <h3>Contato</h3>
           <span>
-            <a href={`mailto:${institution?.email}`} target="_blank" rel="noreferrer">
+            <a
+              href={institution?.email ? `mailto:${institution.email}` : undefined}
+              target="_blank"
+              rel="noreferrer"
+            >
               <FaEnvelope />
-              <span>{institution?.email}</span>
+              <span>{institution?.email || 'Não informado'}</span>
             </a>
-            <a href={`https://wa.me/55${institution?.phone}`} target="_blank" rel="noreferrer">
+            <a
+              href={institution?.phone ? `https://wa.me/55${institution.phone}` : undefined}
+              target="_blank"
+              rel="noreferrer"
+            >
               <FaWhatsapp />
               <span>{institution?.phone}</span>
             </a>
           </span>
           <h3>Links</h3>
-          <a href={institution?.links.urlSite} target="_blank" rel="noopener noreferrer">
+          <a href={institution?.urlSite} target="_blank" rel="noopener noreferrer">
             <BsGlobe />
-            <span>{institution?.links.urlSite || 'Não informado'}</span>
+            <span>{institution?.urlSite || 'Não informado'}</span>
           </a>
-          <a href={institution?.links.urlInstagram} target="_blank" rel="noreferrer">
+          <a href={institution?.urlInstagram} target="_blank" rel="noreferrer">
             <FaInstagram />
-            <span>{institution?.links.urlInstagram || 'Não informado'}</span>
+            <span>{institution?.urlInstagram || 'Não informado'}</span>
           </a>
-          <a href={institution?.links.urlFacebook} target="_blank" rel="noreferrer">
+          <a href={institution?.urlFacebook} target="_blank" rel="noreferrer">
             <FaFacebook />
-            <span>{institution?.links.urlFacebook || 'Não informado'}</span>
+            <span>{institution?.urlFacebook || 'Não informado'}</span>
           </a>
-          <a href={institution?.links.urlLinkedin} target="_blank" rel="noreferrer">
+          <a href={institution?.urlLinkedin} target="_blank" rel="noreferrer">
             <FaLinkedin />
-            <span>{institution?.links.urlLinkedin || 'Não informado'}</span>
+            <span>{institution?.urlLinkedin || 'Não informado'}</span>
           </a>
           <span className="divider"></span>
           Aprovar ou rejeitar a solicitação ?
