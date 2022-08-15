@@ -55,7 +55,7 @@ export const InstitutionCard = styled.div`
   padding: 0.5rem;
 
   height: fit-content;
-  width: calc(25% - 1rem);
+  //width: calc(25% - 1rem);
 
   p {
     color: ${(props) => props.theme['gray-700']};
@@ -81,11 +81,11 @@ export const InstitutionCard = styled.div`
   }
 
   @media screen and (min-width: 769px) and (max-width: 1024px) {
-    width: calc(33.33% - 1rem);
+    //width: calc(33.33% - 1rem);
   }
 
   @media screen and (min-width: 1025px) and (max-width: 1440px) {
-    width: calc(25% - 1rem);
+    //width: calc(25% - 1rem);
   }
 
   @media (min-width: 768px) {

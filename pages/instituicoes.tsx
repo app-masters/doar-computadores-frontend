@@ -1,9 +1,7 @@
-import type { NextPage } from 'next';
-import { institutionsMock } from '../utils/mocks/institutions';
 import Head from 'next/head';
+import { GetStaticProps, NextPage } from 'next';
 import { FaFacebook, FaInstagram, FaWhatsapp, FaMapMarkerAlt } from 'react-icons/fa';
 import { BsGlobe } from 'react-icons/bs';
-import Link from 'next/link';
 import Container from '../components/Container';
 import {
   CardWrapper,
@@ -15,7 +13,37 @@ import {
   TooltipContainer,
 } from '../styles/PagesStyle/instituicoesStyles';
 
-const institutions: NextPage = () => {
+import api from '../services/api';
+
+type InstitutionProps = {
+  idinstitutions: number;
+  name: string;
+  email: string;
+  phone: string;
+  zip: string;
+  city: string;
+  state: string;
+  streetAddress: string;
+  number: string;
+  complement: string;
+  neighborhood: string;
+  description: string;
+  type: string;
+  urlInstagram: string;
+  urlFacebook: string;
+  urlLinkedin: string;
+  urlSite: string;
+  validated: null;
+  created_at: string;
+  updated_at: string;
+};
+
+type DataProps = {
+  institutions: InstitutionProps[];
+  error: boolean;
+};
+
+const institutions: NextPage<DataProps> = ({ institutions, error }) => {
   return (
     <Container bg="primary" h="100vh">
       <Head>
@@ -25,57 +53,95 @@ const institutions: NextPage = () => {
       <InstitutionsContainer>
         <h1>Instituições</h1>
         <p>Encontre instituições pertinho de você para fazer a sua doação!</p>
+
         <CardWrapper>
-          {institutionsMock().map((institutions, index) => (
-            <InstitutionCard key={`${institutions.institutionName} ${index}`}>
-              <h2>{institutions.institutionName}</h2>
-              <p>{institutions.presentation}</p>
-              <Divider />
-              <LocationContainer>
-                <b>
-                  <FaMapMarkerAlt /> Localização
-                </b>
-                <div>
-                  <p>
-                    <b>Cidade:</b> {institutions.address.city}
-                  </p>
-                  <p>
-                    <b>Bairro:</b> {institutions.address.district}
-                  </p>
-                </div>
-              </LocationContainer>
-              <LinksContainer>
-                <TooltipContainer>
-                  <a href={institutions.links.site} target="_blank" rel="noopener noreferrer">
-                    <BsGlobe />
-                  </a>
-                  <span className="tooltiptext">Visitar o site</span>
-                </TooltipContainer>
-                <TooltipContainer>
-                  <a href={institutions.links.instagram} target="_blank" rel="noreferrer">
-                    <FaInstagram />
-                  </a>
-                  <span className="tooltiptext">Visitar Instagram</span>
-                </TooltipContainer>
-                <TooltipContainer>
-                  <a href={institutions.links.facebook} target="_blank" rel="noreferrer">
-                    <FaFacebook />
-                  </a>
-                  <span className="tooltiptext">Visitar Facebook</span>
-                </TooltipContainer>
-                <TooltipContainer>
-                  <a href={institutions.links.whatsapp} target="_blank" rel="noreferrer">
-                    <FaWhatsapp />
-                  </a>
-                  <span className="tooltiptext">Visitar Whatsapp</span>
-                </TooltipContainer>
-              </LinksContainer>
-            </InstitutionCard>
-          ))}
+          {error ? (
+            <p style={{ fontWeight: '500', textAlign: 'center' }}>
+              Ocorreu um erro ao listar as instituições. <br />
+              Entre em contato com o Administrador do sistema.
+            </p>
+          ) : institutions.length > 0 ? (
+            institutions.map((institution, index) => (
+              <InstitutionCard key={`${institution} ${index}`}>
+                <h2>{institution.name}</h2>
+                <p>{institution.description}</p>
+                <Divider />
+                <LocationContainer>
+                  <b>
+                    <FaMapMarkerAlt /> Localização
+                  </b>
+                  <div>
+                    <p>
+                      <b>Cidade:</b> {institution.city}
+                    </p>
+                    <p>
+                      <b>Bairro:</b> {institution.neighborhood}
+                    </p>
+                  </div>
+                </LocationContainer>
+                <LinksContainer>
+                  {institution.urlSite.toLocaleLowerCase() !== 'sem site' && (
+                    <TooltipContainer>
+                      <a href={institution.urlSite} target="_blank" rel="noopener noreferrer">
+                        <BsGlobe />
+                      </a>
+                      <span className="tooltiptext">Visitar o site</span>
+                    </TooltipContainer>
+                  )}
+                  {institution.urlInstagram.toLocaleLowerCase() !== 'sem instagram' && (
+                    <TooltipContainer>
+                      <a href={institution.urlInstagram} target="_blank" rel="noopener noreferrer">
+                        <FaInstagram />
+                      </a>
+                      <span className="tooltiptext">Visitar Instagram</span>
+                    </TooltipContainer>
+                  )}
+                  {institution.urlFacebook.toLocaleLowerCase() !== 'sem facebook' && (
+                    <TooltipContainer>
+                      <a href={institution.urlFacebook} target="_blank" rel="noopener noreferrer">
+                        <FaFacebook />
+                      </a>
+                      <span className="tooltiptext">Visitar Facebook</span>
+                    </TooltipContainer>
+                  )}
+                  {institution.urlLinkedin.toLocaleLowerCase() !== 'sem linkedin' && (
+                    <TooltipContainer>
+                      <a href={institution.urlLinkedin} target="_blank" rel="noopener noreferrer">
+                        <FaWhatsapp />
+                      </a>
+                      <span className="tooltiptext">Visitar Whatsapp</span>
+                    </TooltipContainer>
+                  )}
+                </LinksContainer>
+              </InstitutionCard>
+            ))
+          ) : (
+            <p>Nenhuma instituição cadastrada no momento.</p>
+          )}
         </CardWrapper>
       </InstitutionsContainer>
     </Container>
   );
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  try {
+    const { data } = await api.get('/institution');
+
+    return {
+      props: {
+        institutions: data,
+      },
+      revalidate: 60 * 60, //1h
+    };
+  } catch (err) {
+    console.log(`Error when trying to fetch institution data ${err}`);
+    return {
+      props: {
+        error: true,
+      },
+    };
+  }
 };
 
 export default institutions;
