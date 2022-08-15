@@ -14,6 +14,10 @@ export const LabelWrapper = styled.div`
   gap: 0.5rem;
   align-items: center;
 
+  label {
+    opacity: 0.8;
+  }
+
   & > p {
     color: ${(props) => props.theme['red-300']};
     font-size: 0.75rem;
@@ -28,11 +32,10 @@ export const SelectInput = styled.select`
   border: 0;
   border-radius: 0.5rem;
 
-  font-weight: bold;
+  font-weight: normal;
   color: ${(props) => props.theme['gray-600']};
 
   option {
-    font-weight: bold;
     min-height: 300px;
   }
 `;

@@ -4,6 +4,7 @@ import { phone, zipcode } from './masks';
 import { InputContainer, InputText, LabelWrapper } from './styles';
 
 interface InputProps extends InputHTMLAttributes<HTMLElement> {
+  refProp?: any;
   inputType: string;
   label?: string;
   placeholder: string;
@@ -15,6 +16,7 @@ interface InputProps extends InputHTMLAttributes<HTMLElement> {
 }
 
 const Input = ({
+  refProp,
   inputType,
   label,
   placeholder,
@@ -38,7 +40,7 @@ const Input = ({
   );
 
   return (
-    <InputContainer w={w} type={inputType}>
+    <InputContainer ref={refProp} w={w} type={inputType}>
       <LabelWrapper>
         <label htmlFor={register.name}>{label && <p>{label}</p>}</label>
         <p>{required && '*'}</p>
