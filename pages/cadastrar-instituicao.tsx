@@ -50,7 +50,7 @@ const Home: NextPage = () => {
         />
       </Head>
 
-      <HeroContainer>
+      <HeroContainer formHeight={0}>
         <ServerBadge isServerRunning={isServerRunning} />
         <div>
           <h1>Deseja receber doações para a sua instituição?</h1>

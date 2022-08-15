@@ -104,7 +104,7 @@ const InstitutionRegistrationForm = () => {
       description: fieldsValues.description,
     };
     api
-      .post('institution', dataToStore)
+      .post('/institution', dataToStore)
       .then((response) => {
         toast('Formulário enviado com sucesso!', { type: 'success' });
         reset();
