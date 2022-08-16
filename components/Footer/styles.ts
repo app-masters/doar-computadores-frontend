@@ -274,6 +274,6 @@ export const Description = styled.div`
   }
 
   @media (min-width: 1080px) {
-    padding: 1.6rem 1rem 2rem 4.5rem;
+    padding: 1.6rem 0rem 2rem 6.5rem;
   }
 `;
