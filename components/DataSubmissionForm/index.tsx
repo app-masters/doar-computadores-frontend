@@ -1,4 +1,12 @@
-import { Dispatch, FormEventHandler, MutableRefObject, SetStateAction, useEffect, useRef, useState } from 'react';
+import {
+  Dispatch,
+  FormEventHandler,
+  MutableRefObject,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { useRouter } from 'next/router';
 
 // LIBS
@@ -38,13 +46,13 @@ const newDonationFormValidationSchema = zod.object({
 });
 
 interface DataSubmissionFormProps {
-  setFormHeight: Dispatch<SetStateAction<any>>
+  setFormHeight: Dispatch<SetStateAction<any>>;
 }
 
-const DataSubmissionForm = ({setFormHeight}: DataSubmissionFormProps) => {
-  const formRef = useRef<null | HTMLFormElement>(null)
-  const amountDevicesRef = useRef<null | HTMLDivElement>(null)
-  const router = useRouter()
+const DataSubmissionForm = ({ setFormHeight }: DataSubmissionFormProps) => {
+  const formRef = useRef<null | HTMLFormElement>(null);
+  const amountDevicesRef = useRef<null | HTMLDivElement>(null);
+  const router = useRouter();
 
   const {
     register,
@@ -91,7 +99,7 @@ const DataSubmissionForm = ({setFormHeight}: DataSubmissionFormProps) => {
       devices,
     };
     api
-      .post('donation', dataToStore)
+      .post('/donation', dataToStore)
       .then((response) => {
         toast('Formulário enviado com sucesso!', { type: 'success' });
         reset();
@@ -216,15 +224,15 @@ const DataSubmissionForm = ({setFormHeight}: DataSubmissionFormProps) => {
     );
   }
   // IF THE FORMREF HAS A CURRENT WILL BE SET THE FORMHEIGHT
-  if(formRef.current){
-    setFormHeight(formRef.current.clientHeight)
+  if (formRef.current) {
+    setFormHeight(formRef.current.clientHeight);
   }
 
   // IF THE DEVICECOUNT GRATHER THAN 0 HE TRY TO STROLL TO DEVICESREF
-  if(amountDevicesRef.current){
-   if(deviceCount > 0){
-    amountDevicesRef.current.scrollIntoView()
-   }
+  if (amountDevicesRef.current) {
+    if (deviceCount > 0) {
+      amountDevicesRef.current.scrollIntoView();
+    }
   }
 
   return (
@@ -334,7 +342,7 @@ const DataSubmissionForm = ({setFormHeight}: DataSubmissionFormProps) => {
           required={false}
         />
         {/*THIS DIV USES THE REF WHERE THE SCROLL WILL STOP WHEN CHANGE THE DEVICECOUNT VALUE*/}
-       <div ref={ amountDevicesRef}></div>
+        <div ref={amountDevicesRef}></div>
       </FormGroupContainer>
 
       {/* AMOUNT OF DEDVICES TO DONATE */}
