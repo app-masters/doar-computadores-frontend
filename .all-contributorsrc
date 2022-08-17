@@ -1,0 +1,60 @@
+{
+  "projectName": "doar-computadores-frontend",
+  "projectOwner": "App Masters",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "none",
+  "contributors": [
+    {
+      "login": "joaosilva-web",
+      "name": "João Gustavo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/71562367?v=4",
+      "profile": "https://joaosilva-web.github.io/sitePessoal/index.html",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "abreuthrj",
+      "name": "Thiago Abreu",
+      "avatar_url": "https://avatars.githubusercontent.com/u/54290435?v=4",
+      "profile": "https://www.linkedin.com/in/thiago-abreu-8556861b5/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "jfbaraky",
+      "name": "João Fernando Baraky",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20716607?v=4",
+      "profile": "https://github.com/jfbaraky",
+      "contributions": [
+        "ideas"
+      ]
+    },
+    {
+      "login": "Patrick448",
+      "name": "Patrick Carvalho",
+      "avatar_url": "https://avatars.githubusercontent.com/u/48632357?v=4",
+      "profile": "https://github.com/Patrick448",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "douglassantos45",
+      "name": "Douglas Tott",
+      "avatar_url": "https://avatars.githubusercontent.com/u/45425938?v=4",
+      "profile": "https://github.com/douglassantos45",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}
